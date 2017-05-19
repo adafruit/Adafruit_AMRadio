@@ -1,3 +1,8 @@
+// Example for Adafruit_AMRadio library -- transmits Godzilla sounds on
+// AM 540. Connect antenna to pin A0 (a gator-clip jumper wire works OK). 
+// RANGE IS LIMITED TO A FEW INCHES, so don't take this too seriously,
+// simply a fun science project kind of thing!
+
 #include <Adafruit_AMRadio.h>
 #include "zilla.h" // Audio data is in a table in this file
 
