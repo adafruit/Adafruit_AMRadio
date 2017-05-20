@@ -22,6 +22,7 @@ class Adafruit_AMRadio {
   Adafruit_AMRadio();
   boolean begin(uint32_t freq=540000); // 510000+
   void    write(uint16_t n);           // 0-1023
+  void    tone(uint16_t freq, uint32_t msec, uint16_t vol=1023);
  private:
   uint16_t         carrier[2];         // Square wave; 2 elements, hi & low
   Adafruit_ZeroDMA dma;

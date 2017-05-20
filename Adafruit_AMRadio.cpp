@@ -77,3 +77,16 @@ void Adafruit_AMRadio::write(uint16_t n) {
   carrier[0] = 512 + n;
   carrier[1] = 511 - n;
 }
+
+// Similar to Arduino tone() function, except duration is required;
+// function "blocks" and does not run in the background.
+void Adafruit_AMRadio::tone(uint16_t freq, uint32_t msec, uint16_t vol) {
+  if(vol > 1023) vol = 1023;
+  vol /= 2; // 0 to 511
+  uint32_t halfWave = (1000000 + freq) / (freq * 2),
+           x, usec = msec * 1000, startTime = micros();
+  while((x = (micros() - startTime)) <= usec) {
+    write(((x / halfWave) & 1) ? (512+vol) : (511-vol));
+  }
+  write(512);
+}
