@@ -68,12 +68,12 @@ boolean Adafruit_AMRadio::begin(uint32_t freq) {
 // radio.write(n) is equivalent to analogWrite(n); accepts 10-bit input
 // (0-1023).  Any function that uses DAC for audio (WAV player, Talkie,
 // etc.) can be easily modified to use this instead of the DAC.
-// Input  Carrier hi,lo
-//    0 ->  511 512
-//  512 ->  767 256
-// 1023 -> 1023   0
+// Input   Carrier hi,lo
+//    0  ->   512 511
+//  511  ->   767 256
+// 1023  ->  1023   0
 void Adafruit_AMRadio::write(uint16_t n) {
-  n = (n + 1) / 2;
-  carrier[0] = 511 + n;
-  carrier[1] = 512 - n;
+  n /= 2;
+  carrier[0] = 512 + n;
+  carrier[1] = 511 - n;
 }
