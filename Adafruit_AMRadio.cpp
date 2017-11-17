@@ -47,22 +47,21 @@ boolean Adafruit_AMRadio::begin(uint32_t freq) {
   // DAC INIT --------------------------------------------------------------
 
 #ifdef ADAFRUIT_CIRCUITPLAYGROUND_M0
-  pinMode(40, OUTPUT);
-  digitalWrite(40, LOW);     // Switch off speaker (DAC to A0 pin only)
+  pinMode(11, OUTPUT);
+  digitalWrite(11, LOW);     // Switch off speaker (DAC to A0 pin only)
 #endif
   analogWriteResolution(10); // Let Arduino core initialize the DAC,
   analogWrite(A0, 512);      // ain't nobody got time for that!
 
   // DMA INIT --------------------------------------------------------------
 
-  dma.configure_peripheraltrigger(TC5_DMAC_ID_OVF);
-  dma.configure_triggeraction(DMA_TRIGGER_ACTON_BEAT);
+  dma.setTrigger(TC5_DMAC_ID_OVF);
+  dma.setAction(DMA_TRIGGER_ACTON_BEAT);
   dma.allocate();
-  dma.setup_transfer_descriptor(carrier, (void *)&DAC->DATA.reg, 2,
+  dma.addDescriptor(carrier, (void *)&DAC->DATA.reg, 2,
     DMA_BEAT_SIZE_HWORD, true, false);
-  dma.add_descriptor();
   dma.loop(true);
-  dma.start_transfer_job();
+  dma.startJob();
 }
 
 // radio.write(n) is equivalent to analogWrite(n); accepts 10-bit input
