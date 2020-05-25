@@ -66,7 +66,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Class for using a M0 microcontroller as a short range AM transmitter.  
+<p>Class for using a M0 microcontroller as a short-range AM audio transmitter.  
  <a href="class_adafruit___a_m_radio.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_adafruit___a_m_radio_8h_source.html">Adafruit_AMRadio.h</a>&gt;</code></p>
@@ -78,7 +78,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a3bd437247379264a9411ef3cfe1a7661"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="class_adafruit___a_m_radio.html#a3bd437247379264a9411ef3cfe1a7661" title="Construct a new Adafruit_AMRadio::Adafruit_AMRadio object. ">Adafruit_AMRadio::Adafruit_AMRadio</a> object. <br /></td></tr>
 <tr class="separator:a3bd437247379264a9411ef3cfe1a7661"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af380a6fec309bdb1bd3a0934c7687844"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___a_m_radio.html#af380a6fec309bdb1bd3a0934c7687844">begin</a> (uint32_t freq=540000)</td></tr>
-<tr class="memdesc:af380a6fec309bdb1bd3a0934c7687844"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call to start transmitting at a given frequency.  <a href="#af380a6fec309bdb1bd3a0934c7687844">More...</a><br /></td></tr>
+<tr class="memdesc:af380a6fec309bdb1bd3a0934c7687844"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call to begin AM audio transmission at a given frequency.  <a href="#af380a6fec309bdb1bd3a0934c7687844">More...</a><br /></td></tr>
 <tr class="separator:af380a6fec309bdb1bd3a0934c7687844"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac31a59713cbd4f2659d21091f1b4b2b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___a_m_radio.html#ac31a59713cbd4f2659d21091f1b4b2b4">write</a> (uint16_t center_frequency)</td></tr>
 <tr class="memdesc:ac31a59713cbd4f2659d21091f1b4b2b4"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>write(n)</code> is equivalent to <code>analogWrite(n)</code>; accepts 10-bit input (0-1023). Any function that uses DAC for audio (WAV player, Talkie, etc.) can be easily modified to use this instead of the DAC.  <a href="#ac31a59713cbd4f2659d21091f1b4b2b4">More...</a><br /></td></tr>
@@ -88,7 +88,7 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a71e8d02101355dcfde550cda79d7852c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Class for using a M0 microcontroller as a short range AM transmitter. </p>
+<div class="textblock"><p>Class for using a M0 microcontroller as a short-range AM audio transmitter. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="af380a6fec309bdb1bd3a0934c7687844"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af380a6fec309bdb1bd3a0934c7687844">&#9670;&nbsp;</a></span>begin()</h2>
@@ -106,14 +106,14 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Call to start transmitting at a given frequency. </p>
+<p>Call to begin AM audio transmission at a given frequency. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">freq</td><td>Frequency should be low AM, the lower the better &ndash; try 540000, or some receivers go a bit lower, maybe 510000.</td></tr>
+    <tr><td class="paramname">freq</td><td>Frequency should be low AM, the lower the better &ndash; try 540000, or some receivers go a bit lower, maybe 510000. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>bool true: success false: failure </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>bool true on success, false on failure. </dd></dl>
 
 </div>
 </div>
@@ -178,9 +178,9 @@ Public Member Functions</h2></td></tr>
 <p>Similar to Arduino <a class="el" href="class_adafruit___a_m_radio.html#a71e8d02101355dcfde550cda79d7852c" title="Similar to Arduino tone() function, except duration is required; function &quot;blocks&quot; and does not run i...">tone()</a> function, except duration is required; function "blocks" and does not run in the background. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">freq</td><td>Tone frequency </td></tr>
-    <tr><td class="paramname">msec</td><td>Duration in milliseconds </td></tr>
-    <tr><td class="paramname">vol</td><td>Volume level </td></tr>
+    <tr><td class="paramname">freq</td><td>Tone frequency in Hz. </td></tr>
+    <tr><td class="paramname">msec</td><td>Duration in milliseconds. </td></tr>
+    <tr><td class="paramname">vol</td><td>Volume level (0-1023, default=1023). </td></tr>
   </table>
   </dd>
 </dl>
@@ -189,7 +189,7 @@ Public Member Functions</h2></td></tr>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_adafruit___a_m_radio_8h_source.html">Adafruit_AMRadio.h</a></li>
-<li>Adafruit_AMRadio.cpp</li>
+<li><a class="el" href="_adafruit___a_m_radio_8cpp.html">Adafruit_AMRadio.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
