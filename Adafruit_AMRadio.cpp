@@ -1,33 +1,40 @@
-// -------------------------------------------------------------------------
-// DMA-driven AM radio-transmit audio library for M0 microcontrollers
-// (Circuit Playground Express, Feather M0, Arduino Zero, etc.).
-// Gator-clip antenna to pin A0. Tune receiver to lower frequencies in AM
-// band (examples use 540 KHz by default).
-//
-// Written by Phil Burgess / Paint Your Dragon for Adafruit Industries.
-// Adafruit invests time and resources providing this open source code,
-// please support Adafruit and open-source hardware by purchasing
-// products from Adafruit!
-//
-// MIT license, all text above must be included in any redistribution
-// -------------------------------------------------------------------------
+/*!
+ * @file Adafruit_AMRadio.cpp
+ *
+ * @mainpage AM radio transmit audio library for M0 microcontrollers.
+ *
+ * @section intro_sec Introduction
+ *
+ * DMA-driven AM radio-transmit audio library for M0 microcontrollers
+ * (Circuit Playground Express, Feather M0, Arduino Zero, etc.).
+ * Gator-clip antenna to pin A0. Tune receiver to lower frequencies in AM
+ * band (examples use 540 KHz by default).
+ *
+ * Adafruit invests time and resources providing this open source code,
+ * please support Adafruit and open-source hardware by purchasing
+ * products from Adafruit!
+ *
+ * @section dependencies Dependencies
+ *
+ * This library depends on <a
+ * href="https://github.com/adafruit/Adafruit_ZeroDMA"> Adafruit_ZeroDMA</a>
+ * being present on your system. Please make sure you have installed the
+ * latest version before using this library.
+ *
+ * @section author Author
+ *
+ * Written by Phil Burgess / Paint Your Dragon for Adafruit Industries.
+ *
+ * @section license License
+ *
+ * MIT license, all text above must be included in any redistribution
+ *
+ */
 
 #include <Adafruit_AMRadio.h>
-/**
- * @brief Construct a new Adafruit_AMRadio::Adafruit_AMRadio object
- *
- */
+
 Adafruit_AMRadio::Adafruit_AMRadio() {}
 
-// radio.begin(f
-/**
- * @brief Call to start transmitting at a given frequency
- *
- * @param freq Frequency should be low AM, the lower the better
- * -- try 540000, or some receivers go a bit lower, maybe 510000.
-
- * @return bool true: success false: failure
- */
 bool Adafruit_AMRadio::begin(uint32_t freq) {
   carrier[0] = 767;
   carrier[1] = 256;
@@ -79,32 +86,12 @@ bool Adafruit_AMRadio::begin(uint32_t freq) {
   dma.startJob();
 }
 
-/**
- * @brief `write(n)` is equivalent to `analogWrite(n)`; accepts 10-bit input
-(0-1023).  Any function that uses DAC for audio (WAV player, Talkie,
-etc.) can be easily modified to use this instead of the DAC.
-
- *
- * @param center_frequency
- * Input   Carrier hi,lo
-   0  ->   512 511
- 511  ->   767 256
-1023  ->  1023   0
- */
 void Adafruit_AMRadio::write(uint16_t center_frequency) {
   center_frequency /= 2;
   carrier[0] = 512 + center_frequency;
   carrier[1] = 511 - center_frequency;
 }
 
-/**
- * @brief Similar to Arduino tone() function, except duration is required;
-function "blocks" and does not run in the background.
- *
- * @param freq Tone frequency
- * @param msec Duration in milliseconds
- * @param vol Volume level
- */
 void Adafruit_AMRadio::tone(uint16_t freq, uint32_t msec, uint16_t vol) {
   if (vol > 1023)
     vol = 1023;
