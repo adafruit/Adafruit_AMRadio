@@ -83,7 +83,7 @@ bool Adafruit_AMRadio::begin(uint32_t freq) {
   dma.addDescriptor(carrier, (void *)&DAC->DATA.reg, 2, DMA_BEAT_SIZE_HWORD,
                     true, false);
   dma.loop(true);
-  dma.startJob();
+  return dma.startJob();
 }
 
 void Adafruit_AMRadio::write(uint16_t center_frequency) {
